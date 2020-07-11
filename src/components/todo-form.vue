@@ -48,6 +48,10 @@
 import Todo from '@/models/todo'
 
 export default {
+  mounted(){
+    Todo.insert({ data: { title:'go to the gym',isDone:false} });
+    Todo.insert({ data: { title:'drink my coffee before going to the gym',isDone:false} })
+  },
   data () {
       return { title:'' }
     },

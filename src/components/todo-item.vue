@@ -1,34 +1,40 @@
 <template lang="html" >
-  <v-card >
-    <span class="todo-num">{{ '#' + (index + 1) }}</span>
-    <v-card-title primary-title>
-      <div>
-        <h3 
-          class="headline mb-0" 
-          :class="{'Completed-task':this.item.isDone}">
-          {{ item.title }}
-        </h3>
-      </div>
-    </v-card-title>
+  <transition 
+    appear 
+    enter-active-class="animate__animated animate__fadeIn animate__fast" 
+    leave-active-class="animate__animated animate__fadeOut animate__faster" 
+    mode="out-in">
+    <v-card>
+      <span class="todo-num">{{ '#' + (index + 1) }}</span>
+      <v-card-title primary-title>
+        <div>
+          <h3 
+            class="headline mb-0" 
+            :class="{'Completed-task':this.item.isDone}">
+            {{ item.title }}
+          </h3>
+        </div>
+      </v-card-title>
 
-    <v-btn
-      @click="CompleteToggle">
-      <span v-if="this.item.isDone" >Completed</span>
-      <span v-else >Complete</span>
-    </v-btn>
+      <v-btn
+        @click="CompleteToggle">
+        <span v-if="this.item.isDone" >Completed</span>
+        <span v-else >Complete</span>
+      </v-btn>
 
-    <v-btn 
-      color="info" 
-      @click="UpdateItem">
-      Update
-    </v-btn>
+      <v-btn 
+        color="info" 
+        @click="UpdateItem">
+        Update
+      </v-btn>
 
-    <v-btn 
-      color="error"
-      @click="RemoveItem">
-      Delete
-    </v-btn>
-  </v-card>
+      <v-btn 
+        color="error"
+        @click="RemoveItem">
+        Delete
+      </v-btn>
+    </v-card>
+  </transition>
 </template>
 
 <script>
@@ -50,7 +56,7 @@ export default {
      * this function for removing todo items from vuex-orm
      * 
      */
-    RemoveItem:function() { 
+    RemoveItem:function() {
       Todo.delete(this.item.id);
     },
     /**
@@ -85,5 +91,13 @@ export default {
   }
   .Completed-task{
     text-decoration: line-through;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transition:opacity 1s linear;
+    -webkit-transition: opacity 1.0s linear;
+    -moz-transition: opacity 1.0s linear;
+    -o-transition: opacity 1.0s linear;
   }
 </style>

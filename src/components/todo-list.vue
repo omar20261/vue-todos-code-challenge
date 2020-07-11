@@ -7,6 +7,7 @@
       :item="item"
       :index="i" />
     <p 
+      class="animate__animated animate__fadeIn animate__fast"
       v-if="todos.length === 0" 
       style="text-align: center;" > No Items Found </p>
   </div>
