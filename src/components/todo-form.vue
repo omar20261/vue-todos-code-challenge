@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import Todo from '@/models/todo'
+
 export default {
   data () {
       return { title:'' }
@@ -52,12 +54,15 @@ export default {
   methods:{ 
     addItem:function() { // to add todo item 
       if(!this.title){return;}
-      this.$store.state.TodoItems.push({ title:this.title,isDone:false});
+      Todo.insert({ data: { title:this.title,isDone:false} })
       this.title = "";
     },
     updateItem:function() { // to Update todo Item
-      if(!this.$store.state.UpdateItem){return;}
-      this.$store.state.TodoItems.splice(this.$store.state.UpdateItem.index,1,this.$store.state.UpdateItem);
+      if(!this.$store.state.UpdateItem.title){return;}
+      Todo.update({
+        where: this.$store.state.UpdateItem.id,
+        data: this.$store.state.UpdateItem
+      });
       this.cancelUpdateItem()
     },
     cancelUpdateItem:function() { // to cancel Update todo Item

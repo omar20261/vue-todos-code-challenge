@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import Todo from '@/models/todo'
+
 export default {
   props: {
     item: {
@@ -45,13 +47,18 @@ export default {
   },
   methods:{
     RemoveItem:function() { // to remove todo item
-      this.$store.state.TodoItems.splice(this.index,1);
+      Todo.delete(this.item.id);
     },
     UpdateItem:function() { // to push current todo item to the form to update it
-      this.$store.state.UpdateItem = {...this.item,index:this.index};
+      this.$store.state.UpdateItem = {...this.item};
     },
     CompleteToggle:function() {
-      this.item.isDone = !this.item.isDone
+      Todo.update({
+        where: this.item.id,
+        data: {
+          isDone: !this.item.isDone
+        }
+      });
     }
   }
     
