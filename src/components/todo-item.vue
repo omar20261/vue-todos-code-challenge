@@ -3,13 +3,18 @@
     <span class="todo-num">{{ '#' + (index + 1) }}</span>
     <v-card-title primary-title>
       <div>
-        <h3 class="headline mb-0">
+        <h3 
+          class="headline mb-0" 
+          :class="{'Completed-task':this.item.isDone}">
           {{ item.title }}
         </h3>
       </div>
     </v-card-title>
-    <v-btn>
-      Complete
+
+    <v-btn
+      @click="CompleteToggle">
+      <span v-if="this.item.isDone" >Completed</span>
+      <span v-else >Complete</span>
     </v-btn>
 
     <v-btn 
@@ -17,7 +22,7 @@
       @click="UpdateItem">
       Update
     </v-btn>
-    
+
     <v-btn 
       color="error"
       @click="RemoveItem">
@@ -45,6 +50,9 @@ export default {
     UpdateItem:function() { // to push current todo item to the form to update it
       this.$store.state.UpdateItem = {...this.item,index:this.index};
     },
+    CompleteToggle:function() {
+      this.item.isDone = !this.item.isDone
+    }
   }
     
 }
@@ -55,5 +63,8 @@ export default {
     font-size: 24px;
     margin: 10px;
     float: right;
+  }
+  .Completed-task{
+    text-decoration: line-through;
   }
 </style>
