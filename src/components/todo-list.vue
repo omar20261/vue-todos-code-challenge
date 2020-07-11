@@ -1,7 +1,11 @@
 <template lang="html">
   <div>
-    <TodoItem class="mb-3" />
-    <TodoItem class="mb-3" />
+    <TodoItem 
+      class="mb-3" 
+      v-for="(item,i) in $store.state.TodoItems" 
+      :key="'TodoItems-'+i"
+      :item="item"
+      :index="i" />
   </div>
 </template>
 
