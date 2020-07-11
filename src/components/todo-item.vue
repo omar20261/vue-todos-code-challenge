@@ -3,14 +3,16 @@
     <v-card-title primary-title>
       <div>
         <h3 class="headline mb-0">
-          Title
+          {{ item.title }}
         </h3>
       </div>
     </v-card-title>
     <v-btn>
       Complete
     </v-btn>
-    <v-btn color="error">
+    <v-btn 
+      color="error"
+      @click="RemoveItem">
       Delete
     </v-btn>
   </v-card>
@@ -18,6 +20,22 @@
 
 <script>
 export default {
+  props: {
+    item: {
+      type: Object,
+      default:function() { }
+    },
+    index: {
+      type: Number,
+      default:-1
+    }
+  },
+  methods:{
+    RemoveItem:function() { // to remove todo item
+      this.$store.state.TodoItems.splice(this.index,1);
+    },
+  }
+    
 }
 </script>
 
