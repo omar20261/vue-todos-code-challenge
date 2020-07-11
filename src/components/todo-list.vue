@@ -21,8 +21,11 @@ export default {
     TodoItem,
   },
   computed: {
+     /**
+     * Fetch all Todo records.
+     * @return {Object} all todo list.
+     */
     todos () {
-      // Fetch all Todo records.
       return Todo.all()
     }
   },

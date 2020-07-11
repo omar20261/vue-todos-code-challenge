@@ -1,5 +1,5 @@
-<template lang="html">
-  <v-card>
+<template lang="html" >
+  <v-card >
     <span class="todo-num">{{ '#' + (index + 1) }}</span>
     <v-card-title primary-title>
       <div>
@@ -46,12 +46,24 @@ export default {
     }
   },
   methods:{
-    RemoveItem:function() { // to remove todo item
+    /**
+     * this function for removing todo items from vuex-orm
+     * 
+     */
+    RemoveItem:function() { 
       Todo.delete(this.item.id);
     },
-    UpdateItem:function() { // to push current todo item to the form to update it
+    /**
+     * this function for pushing current todo item to the form to update it
+     * 
+     */
+    UpdateItem:function() { 
       this.$store.state.UpdateItem = {...this.item};
     },
+    /**
+     * this function for Toggling todo items if it is Completed or not 
+     * 
+     */
     CompleteToggle:function() {
       Todo.update({
         where: this.item.id,

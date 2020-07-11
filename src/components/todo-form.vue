@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div >
     <form 
       @submit.prevent="updateItem" 
       v-if="$store.state.UpdateItem">
@@ -52,12 +52,20 @@ export default {
       return { title:'' }
     },
   methods:{ 
-    addItem:function() { // to add todo item 
+     /**
+     * this function for adding todo item to vuex-orm
+     * 
+     */
+    addItem:function() {
       if(!this.title){return;}
       Todo.insert({ data: { title:this.title,isDone:false} })
       this.title = "";
     },
-    updateItem:function() { // to Update todo Item
+     /**
+     * this function for Updating todo item 
+     * 
+     */
+    updateItem:function() { 
       if(!this.$store.state.UpdateItem.title){return;}
       Todo.update({
         where: this.$store.state.UpdateItem.id,
@@ -65,7 +73,11 @@ export default {
       });
       this.cancelUpdateItem()
     },
-    cancelUpdateItem:function() { // to cancel Update todo Item
+    /**
+     * cancel Update todo Item
+     * 
+     */
+    cancelUpdateItem:function() { 
       this.$store.state.UpdateItem=null;
     }
   }
