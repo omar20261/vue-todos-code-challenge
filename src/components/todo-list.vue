@@ -6,6 +6,9 @@
       :key="'TodoItems-'+i"
       :item="item"
       :index="i" />
+    <p 
+      v-if="$store.state.TodoItems.length === 0" 
+      style="text-align: center;" > No Items Found </p>
   </div>
 </template>
 
