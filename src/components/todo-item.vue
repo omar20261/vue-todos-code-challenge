@@ -1,6 +1,7 @@
 <template lang="html">
   <v-card>
     <v-card-title primary-title>
+      <span class="todo-num">{{ '#' + (index + 1) }}</span>
       <div>
         <h3 class="headline mb-0">
           {{ item.title }}
@@ -40,4 +41,9 @@ export default {
 </script>
 
 <style lang="css">
+  .todo-num{
+    font-size: 24px;
+    margin: 10px;
+    float: right;
+  }
 </style>
